@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &95025683
@@ -292,6 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: -90
   pointEffect: 3
 --- !u!65 &286046475
@@ -460,6 +462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: 0
   pointEffect: 3
 --- !u!65 &359938843
@@ -581,7 +584,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
-  totalAngle: -270
+  isUpper: 0
+  totalAngle: 270
   pointEffect: 1
 --- !u!65 &390958902
 BoxCollider:
@@ -702,7 +706,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
-  totalAngle: -270
+  isUpper: 0
+  totalAngle: 90
   pointEffect: 2
 --- !u!65 &457608026
 BoxCollider:
@@ -823,6 +828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &465685131
@@ -1111,6 +1117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: 0
   pointEffect: 3
 --- !u!65 &1008275823
@@ -1334,6 +1341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &1196832206
@@ -1455,6 +1463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: 0
   pointEffect: 2
 --- !u!65 &1201155068
@@ -1576,6 +1585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: 0
   pointEffect: 3
 --- !u!65 &1210660251
@@ -1806,6 +1816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: 0
   pointEffect: 2
 --- !u!65 &1366479823
@@ -2034,6 +2045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &1477249361
@@ -2155,6 +2167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &1556795737
@@ -2276,6 +2289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: -90
   pointEffect: 3
 --- !u!65 &1738151442
@@ -2489,6 +2503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &1892383043
@@ -2610,6 +2625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &1909397303
@@ -2731,6 +2747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &1929409772
@@ -2852,6 +2869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &1940356870
@@ -2973,6 +2991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &1963837585
@@ -3094,6 +3113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
+  isUpper: 0
   totalAngle: 0
   pointEffect: 3
 --- !u!65 &2048022404

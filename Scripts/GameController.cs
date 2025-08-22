@@ -23,12 +23,12 @@ enum PIPer
 }
 public class GameController : MonoBehaviour
 {
-    float nowAngle = 0;
     float timer = 0;
+    float Angle;
     bool finished = false;
-    bool minus = true;
+    bool plus = true;
     bool isPushed = false;
-    int PICount = 0;
+    int minusLower = 0;
     int nowPoint = 0;
     int saikoro;
     ‚·‚²‚ë‚­ GameWave;
@@ -78,12 +78,26 @@ public class GameController : MonoBehaviour
                     }
                     else
                     {
-                        int i = 1;
+                        if (!pointDatas[nowPoint].isUpper)
+                        {
+                            minusLower = -1;
+                            if(pointDatas[nowPoint].totalAngle < 0)
+                            {
+                                plus = true;
+
+                            }
+                            else
+                            {
+                                plus = false;
+                            }
+                        }
+                        /*
+                        int i = 0;
                         if (pointDatas[nowPoint].totalAngle < 0)
                         {
                             PICount = -1;
                             minus = true;
-                            while (i < 5 && !(pointDatas[nowPoint].totalAngle <= 90 * -i))
+                            while (i < 4 && !(pointDatas[nowPoint].totalAngle <= 90 * -i))
                             {
                                 PICount--;
                                 i++;
@@ -93,12 +107,13 @@ public class GameController : MonoBehaviour
                         {
                             PICount = 1;
                             minus = false;
-                            while (i < 5 && !(pointDatas[nowPoint].totalAngle >= 90 * i))
+                            while (i < 4 && !(pointDatas[nowPoint].totalAngle >= 90 * i))
                             {
                                 PICount++;
                                 i++;
                             }
                         }
+                        */
                         GameWave = ‚·‚²‚ë‚­.Move;
                         nowPos = player.transform.position;
                         text.text += "\nˆÚ“®’†...";
@@ -126,11 +141,10 @@ public class GameController : MonoBehaviour
                         Vector3 center = new Vector3(pointB.x, pointA.y, pointA.z);
                         float l = Vector3.Distance(pointA, center);
                         float m = Vector3.Distance(pointB, center);
-                        nowAngle = 0;
-                        if (minus)
+                        float nowAngle = (float)(Math.PI) + timer * speed * minusLower;
+                        if (plus)
                         {
-                            nowAngle = (float)(Math.PI / -2) + timer * speed * -1;
-                            if (nowAngle <= (float)(Math.PI / -2) * PICount && nowAngle >= (float)(Math.PI / -2) * 3)
+                            if (nowAngle <= (float)(Math.PI) * minusLower && nowAngle >= (float)(Math.PI / -1) * 2)
                             {
                                 mypos.x = l * Mathf.Sin(nowAngle) + center.x;
                                 mypos.z = m * Mathf.Cos(nowAngle) + center.z;
@@ -142,11 +156,10 @@ public class GameController : MonoBehaviour
                         }
                         else
                         {
-                            nowAngle = (float)(Math.PI / 2) + timer * speed * 1;
-                            if (nowAngle <= (float)(Math.PI / 2) * PICount && nowAngle >= (float)(Math.PI / 2) * 3)
+                            if (nowAngle <= (float)(Math.PI / -2) * minusLower && nowAngle >= (float)(Math.PI / -1) * 2)
                             {
-                                mypos.x = l * Mathf.Sin(nowAngle) + center.x;
-                                mypos.z = m * Mathf.Cos(nowAngle) + center.z;
+                                mypos.x = l * Mathf.Cos(nowAngle) + center.x;
+                                mypos.z = m * Mathf.Sin(nowAngle) + center.z;
                             }
                             else
                             {
@@ -160,43 +173,43 @@ public class GameController : MonoBehaviour
                 else if (saikoro != 0)
                 {
                     finished = false;
-                    PICount = 0;
+                    minusLower = 0;
                     timer = 0;
                     nowPos = player.transform.position;
-                    int i = 1;
+                    nowPoint++;
+                    int i = 0;
                     if (pointDatas[nowPoint].totalAngle < 0)
                     {
-                        PICount = -1;
-                        minus = true;
-                        while (i < 5 && !(pointDatas[nowPoint].totalAngle <= 90 * -i))
+                        minusLower = -1;
+                        plus = true;
+                        while (i < 4 && !(pointDatas[nowPoint].totalAngle <= 90 * -i))
                         {
-                            PICount--;
+                            minusLower--;
                             i++;
                         }
                     }
                     else
                     {
-                        PICount = 1;
-                        minus = false;
-                        while (i < 5 && !(pointDatas[nowPoint].totalAngle >= 90 * i))
+                        minusLower = 1;
+                        plus = false;
+                        while (i < 4 && !(pointDatas[nowPoint].totalAngle >= 90 * i))
                         {
-                            PICount++;
+                            minusLower++;
                             i++;
                         }
                     }
                     if (nowPoint < 0)
                     {
-                        if (minus)
+                        if (plus)
                         {
-                            minus = false;
+                            plus = false;
                         }
                         else
                         {
-                            minus = true;
+                            plus = true;
                         }
                     }
                     saikoro--;
-                    nowPoint++;
                     if (nowPoint + 1 == pointDatas.Count) GameWave = ‚·‚²‚ë‚­.Goal;
                 }
                 else
