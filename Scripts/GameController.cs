@@ -23,12 +23,11 @@ enum PIPer
 }
 public class GameController : MonoBehaviour
 {
-    float timer = 0;
     bool finished = false;
     bool plus = true;
     bool isPushed = false;
-    int Angle;
-    int a = 1;
+    float timer = 0;
+    float windingPer = 1;
     int minusLower = 0;
     int nowPoint = 0;
     int saikoro;
@@ -137,7 +136,14 @@ public class GameController : MonoBehaviour
                 }
                 break;
             case ‚·‚²‚ë‚­.Move:
-                Angle = Mathf.Abs(pointDatas[nowPoint].totalAngle) / 90;
+                if (pointDatas[nowPoint].totalAngle > 90)
+                {
+                    windingPer = pointDatas[nowPoint].totalAngle / 360;
+                }
+                else
+                {
+                    windingPer = 0;
+                }
                 float totalTime = 1;
                 float x1 = player.transform.position.x;
                 float z1 = player.transform.position.z;
@@ -173,26 +179,11 @@ public class GameController : MonoBehaviour
                         {
                             if (plus)
                             {
-                                switch (a)
-                                {
-                                    case 1:
-                                        pi = (float)(Math.PI * -1) * 3 / 2; break;
-                                    case 2:
-                                        pi = (float)(Math.PI * -1); break;
-                                    case 3:
-                                        pi = (float)(Math.PI * -1) / 2; break;
-                                    default:
-                                        pi = (float)(Math.PI * -1) * 3 / 2; break;
-                                }
                                 nowAngle = (float)(Math.PI * -1) + timer * speed * minusLower;
-                                if (nowAngle <= (float)(Math.PI) * -1 && nowAngle >= pi)
+                                if (nowAngle <= (float)(Math.PI) * -1 && nowAngle >= (float)(Math.PI) * -1 * 3 / 2 - (windingPer * (float)(Math.PI * 2)))
                                 {
                                     mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                     mypos.z = m * Mathf.Sin(nowAngle) + center.z;
-                                }
-                                else if (a != Angle)
-                                {
-                                    a++;
                                 }
                                 else
                                 {
@@ -201,26 +192,11 @@ public class GameController : MonoBehaviour
                             }
                             else
                             {
-                                switch (a)
-                                {
-                                    case 1:
-                                        pi = (float)(Math.PI * -1) / 2; break;
-                                    case 2:
-                                        pi = (float)(Math.PI * 1); break;
-                                    case 3:
-                                        pi = (float)(Math.PI * 1) * 3 / 2; break;
-                                    default:
-                                        pi = (float)(Math.PI * -1) / 2; break;
-                                }
                                 nowAngle = (float)(Math.PI * -1) + timer * speed * minusLower;
-                                if (nowAngle >= (float)(Math.PI) * -1 && nowAngle <= pi)
+                                if (nowAngle >= (float)(Math.PI) * -1 && nowAngle <= (float)(Math.PI) * -1 + (windingPer * (float)(Math.PI * 2)))
                                 {
                                     mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                     mypos.z = m * Mathf.Sin(nowAngle) + center.z;
-                                }
-                                else if (a != Angle)
-                                {
-                                    a++;
                                 }
                                 else
                                 {
@@ -232,26 +208,11 @@ public class GameController : MonoBehaviour
                         {
                             if (plus)
                             {
-                                switch (a)
-                                {
-                                    case 1:
-                                        pi = (float)(Math.PI * -1) * 3 / 2; break;
-                                    case 2:
-                                        pi = (float)(Math.PI * -1); break;
-                                    case 3:
-                                        pi = (float)(Math.PI * -1) / 2; break;
-                                    default:
-                                        pi = (float)(Math.PI * -1) * 3 / 2; break;
-                                }
-                                nowAngle = (float)(Math.PI * -1) + timer * speed * minusLower;
-                                if (nowAngle <= (float)(Math.PI) * -1 && nowAngle >= pi)
+                                nowAngle = (float)(Math.PI * 0) + timer * speed * minusLower;
+                                if (nowAngle <= (float)(Math.PI) * 0 && nowAngle >= (float)(Math.PI) * 0 + (windingPer * (float)(Math.PI * 2)))
                                 {
                                     mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                     mypos.z = m * Mathf.Sin(nowAngle) + center.z;
-                                }
-                                else if (a != Angle)
-                                {
-                                    a++;
                                 }
                                 else
                                 {
@@ -260,26 +221,11 @@ public class GameController : MonoBehaviour
                             }
                             else
                             {
-                                switch (a)
-                                {
-                                    case 1:
-                                        pi = (float)(Math.PI * -1) / 2; break;
-                                    case 2:
-                                        pi = (float)(Math.PI * 1); break;
-                                    case 3:
-                                        pi = (float)(Math.PI * 1) * 3 / 2; break;
-                                    default:
-                                        pi = (float)(Math.PI * -1) / 2; break;
-                                }
-                                nowAngle = (float)(Math.PI * -1) + timer * speed * minusLower;
-                                if (nowAngle >= (float)(Math.PI) * -1 && nowAngle <= pi)
+                                nowAngle = (float)(Math.PI * 0) + timer * speed * minusLower;
+                                if (nowAngle >= (float)(Math.PI) * 01 && nowAngle <= (float)(Math.PI) * 0 - (windingPer * (float)(Math.PI * 2)))
                                 {
                                     mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                     mypos.z = m * Mathf.Sin(nowAngle) + center.z;
-                                }
-                                else if (a != Angle)
-                                {
-                                    a++;
                                 }
                                 else
                                 {
@@ -293,7 +239,7 @@ public class GameController : MonoBehaviour
                 }
                 else if (saikoro != 0)
                 {
-                    a = 1;
+                    windingPer = 1;
                     finished = false;
                     minusLower = 0;
                     timer = 0;
