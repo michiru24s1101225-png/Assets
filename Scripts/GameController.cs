@@ -213,7 +213,7 @@ public class GameController : MonoBehaviour
                             else
                             {
                                 nowAngle = (float)(Math.PI * 0) + timer * speed * minusLower;
-                                if (nowAngle >= (float)(Math.PI) * 01 && nowAngle <= (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2)))
+                                if (nowAngle >= (float)(Math.PI) * 0 && nowAngle <= (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2)))
                                 {
                                     mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                     mypos.z = m * Mathf.Sin(nowAngle) + center.z;
