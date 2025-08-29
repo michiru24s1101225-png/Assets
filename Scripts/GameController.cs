@@ -17,7 +17,7 @@ enum ‚·‚²‚ë‚­
 public class GameController : MonoBehaviour
 {
     bool finished = false;
-    bool plus = true;
+    bool upperWinding = true;
     bool isPushed = false;
     float timer = 0;
     float windingPer = 1;
@@ -70,18 +70,18 @@ public class GameController : MonoBehaviour
                     }
                     else
                     {
-                        if (!pointDatas[nowPoint].isUpper)
+                        if (!pointDatas[nowPoint].isLower)
                         {
                             minusLower = -1;
                             if (pointDatas[nowPoint].totalAngle < 0)
                             {
-                                plus = true;
+                                upperWinding = true;
 
                             }
                             else
                             {
                                 minusLower = 1;
-                                plus = false;
+                                upperWinding = false;
                             }
                         }
                         else
@@ -89,13 +89,13 @@ public class GameController : MonoBehaviour
                             minusLower = 1;
                             if (pointDatas[nowPoint].totalAngle < 0)
                             {
-                                plus = true;
+                                upperWinding = true;
 
                             }
                             else
                             {
                                 minusLower = -1;
-                                plus = false;
+                                upperWinding = false;
                             }
                         }
                         /*
@@ -154,7 +154,7 @@ public class GameController : MonoBehaviour
                         Vector3 pointB = pointDatas[nowPoint + 1].transform.position;
                         Vector3 mypos = player.transform.position;
                         Vector3 center = Vector3.zero;
-                        if (pointDatas[nowPoint].isUpper)
+                        if (pointDatas[nowPoint].isLower)
                         {
                             center = new Vector3(pointB.x, pointA.y, pointA.z);
                         }
@@ -166,9 +166,9 @@ public class GameController : MonoBehaviour
                         float m = Vector3.Distance(pointB, center);
                         float nowAngle = 0;
 
-                        if (!pointDatas[nowPoint].isUpper)
+                        if (!pointDatas[nowPoint].isLower)
                         {
-                            if (plus)//0‚Ü‚½‚Í-PI‚ð’†S‚Æ‚µ‚½‰Eã‰ñ“]
+                            if (upperWinding)//-PI‚ð’†S‚Æ‚µ‚½‰Eã‚É‰ñ“]
                             {
                                 nowAngle = (float)(Math.PI * -1) + timer * speed * minusLower;
                                 if (nowAngle <= (float)(Math.PI) * -1 && nowAngle >= (float)(Math.PI) * -1 * 3 / 2 - (windingPer * (float)(Math.PI * 2)))
@@ -181,7 +181,7 @@ public class GameController : MonoBehaviour
                                     finished = true;
                                 }
                             }
-                            else//0‚Ü‚½‚Í-PI‚ð’†S‚Æ‚µ‚½‰E‰º‰ñ“]
+                            else//-PI‚ð’†S‚Æ‚µ‚½‰E‰º‚É‰ñ“]
                             {
                                 nowAngle = (float)(Math.PI * -1) + timer * speed * minusLower;
                                 if (nowAngle >= (float)(Math.PI) * -1 && nowAngle <= (float)(Math.PI) * -1 / 2 + (windingPer * (float)(Math.PI * 2)))
@@ -197,10 +197,10 @@ public class GameController : MonoBehaviour
                         }
                         else
                         {
-                            if (plus)//0‚Ü‚½‚Í-PI‚ð’†S‚Æ‚µ‚½¶ã‰ñ“]
+                            if (upperWinding)//0‚ð’†S‚Æ‚µ‚½¶ã‚É‰ñ“]
                             {
                                 nowAngle = (float)(Math.PI * 0) + timer * speed * minusLower;
-                                if (nowAngle <= (float)(Math.PI) * 0 && nowAngle >= (float)(Math.PI) * 1 / 2 + (windingPer * (float)(Math.PI * 2)))
+                                if (nowAngle >= (float)(Math.PI) * 0 && nowAngle <= (float)(Math.PI) * 1 / 2 + (windingPer * (float)(Math.PI * 2)))
                                 {
                                     mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                     mypos.z = m * Mathf.Sin(nowAngle) + center.z;
@@ -210,10 +210,10 @@ public class GameController : MonoBehaviour
                                     finished = true;
                                 }
                             }
-                            else//0‚Ü‚½‚Í-PI‚ð’†S‚Æ‚µ‚½¶‰º‰ñ“]
+                            else//0‚ð’†S‚Æ‚µ‚½¶‰º‚É‰ñ“]
                             {
                                 nowAngle = (float)(Math.PI * 0) + timer * speed * minusLower;
-                                if (nowAngle >= (float)(Math.PI) * 0 && nowAngle <= (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2)))
+                                if (nowAngle <= (float)(Math.PI) * 0 && nowAngle <= (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2)))
                                 {
                                     mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                     mypos.z = m * Mathf.Sin(nowAngle) + center.z;
@@ -240,7 +240,7 @@ public class GameController : MonoBehaviour
                     if (pointDatas[nowPoint].totalAngle < 0)
                     {
                         minusLower = -1;
-                        plus = true;
+                        upperWinding = true;
                         while (i < 4 && !(pointDatas[nowPoint].totalAngle <= 90 * -i))
                         {
                             minusLower--;
@@ -250,7 +250,7 @@ public class GameController : MonoBehaviour
                     else
                     {
                         minusLower = 1;
-                        plus = false;
+                        upperWinding = false;
                         while (i < 4 && !(pointDatas[nowPoint].totalAngle >= 90 * i))
                         {
                             minusLower++;
@@ -259,13 +259,13 @@ public class GameController : MonoBehaviour
                     }
                     if (nowPoint < 0)
                     {
-                        if (plus)
+                        if (upperWinding)
                         {
-                            plus = false;
+                            upperWinding = false;
                         }
                         else
                         {
-                            plus = true;
+                            upperWinding = true;
                         }
                     }
                     saikoro--;
