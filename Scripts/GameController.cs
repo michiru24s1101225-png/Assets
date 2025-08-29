@@ -168,7 +168,7 @@ public class GameController : MonoBehaviour
 
                         if (!pointDatas[nowPoint].isUpper)
                         {
-                            if (plus)
+                            if (plus)//0または-PIを中心とした右上回転
                             {
                                 nowAngle = (float)(Math.PI * -1) + timer * speed * minusLower;
                                 if (nowAngle <= (float)(Math.PI) * -1 && nowAngle >= (float)(Math.PI) * -1 * 3 / 2 - (windingPer * (float)(Math.PI * 2)))
@@ -181,7 +181,7 @@ public class GameController : MonoBehaviour
                                     finished = true;
                                 }
                             }
-                            else
+                            else//0または-PIを中心とした右下回転
                             {
                                 nowAngle = (float)(Math.PI * -1) + timer * speed * minusLower;
                                 if (nowAngle >= (float)(Math.PI) * -1 && nowAngle <= (float)(Math.PI) * -1 / 2 + (windingPer * (float)(Math.PI * 2)))
@@ -197,7 +197,7 @@ public class GameController : MonoBehaviour
                         }
                         else
                         {
-                            if (plus)
+                            if (plus)//0または-PIを中心とした左上回転
                             {
                                 nowAngle = (float)(Math.PI * 0) + timer * speed * minusLower;
                                 if (nowAngle <= (float)(Math.PI) * 0 && nowAngle >= (float)(Math.PI) * 1 / 2 + (windingPer * (float)(Math.PI * 2)))
@@ -210,7 +210,7 @@ public class GameController : MonoBehaviour
                                     finished = true;
                                 }
                             }
-                            else
+                            else//0または-PIを中心とした左下回転
                             {
                                 nowAngle = (float)(Math.PI * 0) + timer * speed * minusLower;
                                 if (nowAngle >= (float)(Math.PI) * 0 && nowAngle <= (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2)))
