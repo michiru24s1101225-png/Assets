@@ -2289,7 +2289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  isUpper: 1
   totalAngle: -90
   pointEffect: 3
 --- !u!65 &1738151442

@@ -24,10 +24,11 @@ enum PIPer
 public class GameController : MonoBehaviour
 {
     float timer = 0;
-    float Angle;
     bool finished = false;
     bool plus = true;
     bool isPushed = false;
+    int Angle;
+    int a = 1;
     int minusLower = 0;
     int nowPoint = 0;
     int saikoro;
@@ -81,13 +82,28 @@ public class GameController : MonoBehaviour
                         if (!pointDatas[nowPoint].isUpper)
                         {
                             minusLower = -1;
-                            if(pointDatas[nowPoint].totalAngle < 0)
+                            if (pointDatas[nowPoint].totalAngle < 0)
                             {
                                 plus = true;
 
                             }
                             else
                             {
+                                minusLower = 1;
+                                plus = false;
+                            }
+                        }
+                        else
+                        {
+                            minusLower = 1;
+                            if (pointDatas[nowPoint].totalAngle < 0)
+                            {
+                                plus = true;
+
+                            }
+                            else
+                            {
+                                minusLower = -1;
                                 plus = false;
                             }
                         }
@@ -121,6 +137,7 @@ public class GameController : MonoBehaviour
                 }
                 break;
             case ‚·‚²‚ë‚­.Move:
+                Angle = Mathf.Abs(pointDatas[nowPoint].totalAngle) / 90;
                 float totalTime = 1;
                 float x1 = player.transform.position.x;
                 float z1 = player.transform.position.z;
@@ -138,32 +155,136 @@ public class GameController : MonoBehaviour
                         Vector3 pointA = pointDatas[nowPoint].transform.position;
                         Vector3 pointB = pointDatas[nowPoint + 1].transform.position;
                         Vector3 mypos = player.transform.position;
-                        Vector3 center = new Vector3(pointB.x, pointA.y, pointA.z);
+                        Vector3 center = Vector3.zero;
+                        if (pointDatas[nowPoint].isUpper)
+                        {
+                            center = new Vector3(pointB.x, pointA.y, pointA.z);
+                        }
+                        else
+                        {
+                            center = new Vector3(pointA.x, pointA.y, pointB.z);
+                        }
                         float l = Vector3.Distance(pointA, center);
                         float m = Vector3.Distance(pointB, center);
-                        float nowAngle = (float)(Math.PI) + timer * speed * minusLower;
-                        if (plus)
+                        float nowAngle = 0;
+                        float pi = 0;
+
+                        if (!pointDatas[nowPoint].isUpper)
                         {
-                            if (nowAngle <= (float)(Math.PI) * minusLower && nowAngle >= (float)(Math.PI / -1) * 2)
+                            if (plus)
                             {
-                                mypos.x = l * Mathf.Sin(nowAngle) + center.x;
-                                mypos.z = m * Mathf.Cos(nowAngle) + center.z;
+                                switch (a)
+                                {
+                                    case 1:
+                                        pi = (float)(Math.PI * -1) * 3 / 2; break;
+                                    case 2:
+                                        pi = (float)(Math.PI * -1); break;
+                                    case 3:
+                                        pi = (float)(Math.PI * -1) / 2; break;
+                                    default:
+                                        pi = (float)(Math.PI * -1) * 3 / 2; break;
+                                }
+                                nowAngle = (float)(Math.PI * -1) + timer * speed * minusLower;
+                                if (nowAngle <= (float)(Math.PI) * -1 && nowAngle >= pi)
+                                {
+                                    mypos.x = l * Mathf.Cos(nowAngle) + center.x;
+                                    mypos.z = m * Mathf.Sin(nowAngle) + center.z;
+                                }
+                                else if (a != Angle)
+                                {
+                                    a++;
+                                }
+                                else
+                                {
+                                    finished = true;
+                                }
                             }
                             else
                             {
-                                finished = true;
+                                switch (a)
+                                {
+                                    case 1:
+                                        pi = (float)(Math.PI * -1) / 2; break;
+                                    case 2:
+                                        pi = (float)(Math.PI * 1); break;
+                                    case 3:
+                                        pi = (float)(Math.PI * 1) * 3 / 2; break;
+                                    default:
+                                        pi = (float)(Math.PI * -1) / 2; break;
+                                }
+                                nowAngle = (float)(Math.PI * -1) + timer * speed * minusLower;
+                                if (nowAngle >= (float)(Math.PI) * -1 && nowAngle <= pi)
+                                {
+                                    mypos.x = l * Mathf.Cos(nowAngle) + center.x;
+                                    mypos.z = m * Mathf.Sin(nowAngle) + center.z;
+                                }
+                                else if (a != Angle)
+                                {
+                                    a++;
+                                }
+                                else
+                                {
+                                    finished = true;
+                                }
                             }
                         }
                         else
                         {
-                            if (nowAngle <= (float)(Math.PI / -2) * minusLower && nowAngle >= (float)(Math.PI / -1) * 2)
+                            if (plus)
                             {
-                                mypos.x = l * Mathf.Cos(nowAngle) + center.x;
-                                mypos.z = m * Mathf.Sin(nowAngle) + center.z;
+                                switch (a)
+                                {
+                                    case 1:
+                                        pi = (float)(Math.PI * -1) * 3 / 2; break;
+                                    case 2:
+                                        pi = (float)(Math.PI * -1); break;
+                                    case 3:
+                                        pi = (float)(Math.PI * -1) / 2; break;
+                                    default:
+                                        pi = (float)(Math.PI * -1) * 3 / 2; break;
+                                }
+                                nowAngle = (float)(Math.PI * -1) + timer * speed * minusLower;
+                                if (nowAngle <= (float)(Math.PI) * -1 && nowAngle >= pi)
+                                {
+                                    mypos.x = l * Mathf.Cos(nowAngle) + center.x;
+                                    mypos.z = m * Mathf.Sin(nowAngle) + center.z;
+                                }
+                                else if (a != Angle)
+                                {
+                                    a++;
+                                }
+                                else
+                                {
+                                    finished = true;
+                                }
                             }
                             else
                             {
-                                finished = true;
+                                switch (a)
+                                {
+                                    case 1:
+                                        pi = (float)(Math.PI * -1) / 2; break;
+                                    case 2:
+                                        pi = (float)(Math.PI * 1); break;
+                                    case 3:
+                                        pi = (float)(Math.PI * 1) * 3 / 2; break;
+                                    default:
+                                        pi = (float)(Math.PI * -1) / 2; break;
+                                }
+                                nowAngle = (float)(Math.PI * -1) + timer * speed * minusLower;
+                                if (nowAngle >= (float)(Math.PI) * -1 && nowAngle <= pi)
+                                {
+                                    mypos.x = l * Mathf.Cos(nowAngle) + center.x;
+                                    mypos.z = m * Mathf.Sin(nowAngle) + center.z;
+                                }
+                                else if (a != Angle)
+                                {
+                                    a++;
+                                }
+                                else
+                                {
+                                    finished = true;
+                                }
                             }
                         }
                         player.transform.position = mypos;
@@ -172,6 +293,7 @@ public class GameController : MonoBehaviour
                 }
                 else if (saikoro != 0)
                 {
+                    a = 1;
                     finished = false;
                     minusLower = 0;
                     timer = 0;
