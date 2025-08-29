@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PointDatas : MonoBehaviour
 {
-    public Vector3 pointTransform;
+    public bool upperWinding = false;
     public bool isLower = false;
     public int totalAngle = 0;
     public int pointEffect;

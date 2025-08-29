@@ -170,8 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &95025683
@@ -292,9 +292,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
-  totalAngle: -90
+  upperWinding: 1
+  isLower: 0
+  totalAngle: 90
   pointEffect: 3
 --- !u!65 &286046475
 BoxCollider:
@@ -461,8 +461,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 0
   pointEffect: 3
 --- !u!65 &359938843
@@ -583,8 +583,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 270
   pointEffect: 1
 --- !u!65 &390958902
@@ -705,8 +705,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 90
   pointEffect: 2
 --- !u!65 &457608026
@@ -827,8 +827,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &465685131
@@ -1116,8 +1116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 0
   pointEffect: 3
 --- !u!65 &1008275823
@@ -1340,8 +1340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &1196832206
@@ -1462,8 +1462,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 0
   pointEffect: 2
 --- !u!65 &1201155068
@@ -1584,8 +1584,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 0
   pointEffect: 3
 --- !u!65 &1210660251
@@ -1815,8 +1815,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 0
   pointEffect: 2
 --- !u!65 &1366479823
@@ -2044,8 +2044,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &1477249361
@@ -2166,8 +2166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &1556795737
@@ -2288,9 +2288,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 1
-  totalAngle: -90
+  upperWinding: 1
+  isLower: 0
+  totalAngle: 90
   pointEffect: 3
 --- !u!65 &1738151442
 BoxCollider:
@@ -2502,8 +2502,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &1892383043
@@ -2624,8 +2624,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &1909397303
@@ -2746,8 +2746,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &1929409772
@@ -2868,8 +2868,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &1940356870
@@ -2990,8 +2990,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 0
   pointEffect: 1
 --- !u!65 &1963837585
@@ -3112,8 +3112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6c7a7c0a02c44e4aa869c7e8dd641d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointTransform: {x: 0, y: 0, z: 0}
-  isUpper: 0
+  upperWinding: 0
+  isLower: 0
   totalAngle: 0
   pointEffect: 3
 --- !u!65 &2048022404
@@ -3321,6 +3321,37 @@ RectTransform:
   m_AnchoredPosition: {x: -480, y: 270}
   m_SizeDelta: {x: 960, y: 540}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2144248840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2144248841}
+  m_Layer: 0
+  m_Name: GameObject.1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2144248841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144248840}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5, y: 0, z: 7.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3333,3 +3364,4 @@ SceneRoots:
   - {fileID: 614149471}
   - {fileID: 767649763}
   - {fileID: 1251187554}
+  - {fileID: 2144248841}
