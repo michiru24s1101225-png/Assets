@@ -111,6 +111,14 @@ public class GameController : MonoBehaviour
                             }
                         }
                         */
+                        if (pointDatas[nowPoint].upperWinding)
+                        {
+                            direction = -1;
+                        }
+                        else
+                        {
+                            direction = 1;
+                        }
                         GameWave = すごろく.Move;
                         nowPos = player.transform.position;
                         text.text += "\n移動中...";
@@ -152,7 +160,7 @@ public class GameController : MonoBehaviour
 
                         if (!pointDatas[nowPoint].isLower || !reverseWinding)
                         {
-                            if (pointDatas[nowPoint].upperWinding)//-PIを中心とした右上に回転
+                            if (reverseUW)//-PIを中心とした右上に回転
                             {
                                 nowAngle = (float)(Math.PI * -1) + timer * speed * direction;
                                 if (nowAngle <= (float)(Math.PI) * -1 && nowAngle >= (float)(Math.PI) * -1 * 3 / 2 - (windingPer * (float)(Math.PI * 2)))
@@ -181,7 +189,7 @@ public class GameController : MonoBehaviour
                         }
                         else
                         {
-                            if (pointDatas[nowPoint].upperWinding)//0を中心とした左上に回転
+                            if (reverseUW)//0を中心とした左上に回転
                             {
                                 nowAngle = (float)(Math.PI * 0) + timer * speed * direction;
                                 if (nowAngle >= (float)(Math.PI) * 0 && nowAngle <= (float)(Math.PI) * 1 / 2 + (windingPer * (float)(Math.PI * 2)))
