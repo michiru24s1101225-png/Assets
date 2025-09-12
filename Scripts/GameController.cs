@@ -68,60 +68,16 @@ public class GameController : MonoBehaviour
                     //saikoro = UnityEngine.Random.Range(0, 6) + 1;
                     text.text += "\nサイコロの目は" + (2);//デバック
                     //text.text += "\nサイコロの目は" + (saikoro);
+                    if (minusPoint)
+                    {
+                        reverseWinding = true;
+                    }
                     if (nowPoint == pointDatas.Count)
                     {
                         GameWave = すごろく.Goal;
                     }
                     else
                     {
-                        /*
-                        if (!pointDatas[nowPoint].isLower)
-                        {
-                            minusLower = -1;
-                            if (pointDatas[nowPoint].totalAngle > 0)
-                            {
-                                minusLower = 1;
-                            }
-                        }
-                        else
-                        {
-                            minusLower = 1;
-                            if (pointDatas[nowPoint].totalAngle > 0)
-                            {
-                                minusLower = -1;
-                            }
-                        }
-                        
-                        int i = 0;
-                        if (pointDatas[nowPoint].totalAngle < 0)
-                        {
-                            PICount = -1;
-                            minus = true;
-                            while (i < 4 && !(pointDatas[nowPoint].totalAngle <= 90 * -i))
-                            {
-                                PICount--;
-                                i++;
-                            }
-                        }
-                        else
-                        {
-                            PICount = 1;
-                            minus = false;
-                            while (i < 4 && !(pointDatas[nowPoint].totalAngle >= 90 * i))
-                            {
-                                PICount++;
-                                i++;
-                            }
-                        }
-                        */
-                        if (pointDatas[nowPoint].upperWinding)
-                        {
-                            direction = -1;
-                        }
-                        else
-                        {
-                            direction = 1;
-                        }
                         GameWave = すごろく.Move;
                         nowPos = player.transform.position;
                         text.text += "\n移動中...";
@@ -129,28 +85,32 @@ public class GameController : MonoBehaviour
                 }
                 break;
             case すごろく.Move:
-                if (minusPoint)
-                {
-                    reverseWinding = true;
-                    leftAndRight = !pointDatas[nowPoint].upperWinding;
-                }
-                else
+                if (!minusPoint)
                 {
                     reverseWinding = false;
                 }
+                leftAndRight = pointDatas[nowPoint].upperWinding;
+                float totalTime = 1;
+                float x1;
+                float z1;
+                float x2;
+                float z2;
                 if (reverseWinding)
                 {
-                    windingPer = ((float)(pointDatas[nowPoint - 1].totalAngle) - 90f) / 360f;
+                    windingPer = (float)(pointDatas[nowPoint - 1].totalAngle) / 360f - 1 / 4;
+                    x2 = player.transform.position.x;
+                    z2 = player.transform.position.z;
+                    x1 = pointDatas[nowPoint - 1].transform.position.x;
+                    z1 = pointDatas[nowPoint - 1].transform.position.z;
                 }
                 else
                 {
-                    windingPer = ((float)(pointDatas[nowPoint].totalAngle) - 90f) / 360f;
+                    windingPer = (float)(pointDatas[nowPoint].totalAngle) / 360f - 1 / 4;
+                    x1 = player.transform.position.x;
+                    z1 = player.transform.position.z;
+                    x2 = pointDatas[nowPoint + 1].transform.position.x;
+                    z2 = pointDatas[nowPoint + 1].transform.position.z;
                 }
-                float totalTime = 1;
-                float x1 = player.transform.position.x;
-                float z1 = player.transform.position.z;
-                float x2 = pointDatas[nowPoint + 1].transform.position.x;
-                float z2 = pointDatas[nowPoint + 1].transform.position.z;
                 if ((Mathf.Sqrt((x2 - x1) * (x2 - x1) + (z2 - z1) * (z2 - z1)) > 0.01f && !finished) && saikoro != 0)
                 {
                     if (pointDatas[nowPoint].totalAngle == 0)
@@ -159,13 +119,28 @@ public class GameController : MonoBehaviour
                     }
                     else
                     {
-                        float speed = 2;
-                        if (!reverseWinding) leftAndRight = pointDatas[nowPoint].upperWinding;
-                        Vector3 pointA = pointDatas[nowPoint].transform.position;
+                        if (leftAndRight)
+                        {
+                            direction = -1;
+                        }
+                        else
+                        {
+                            direction = 1;
+                        }
+                        float speed = 3;
+                        Vector3 pointA;
+                        if (reverseWinding)
+                        {
+                            pointA = pointDatas[nowPoint - 1].transform.position;
+                        }
+                        else
+                        {
+                            pointA = pointDatas[nowPoint].transform.position;
+                        }
                         Vector3 pointB;
                         if (reverseWinding)
                         {
-                            pointB = pointDatas[nowPoint - 1].transform.position;
+                            pointB = pointDatas[nowPoint].transform.position;
                         }
                         else
                         {
@@ -184,14 +159,14 @@ public class GameController : MonoBehaviour
                             {
                                 if (!reverseWinding)
                                 {
-                                    nowAngle = (float)(Math.PI * -1) + timer * speed * direction;
+                                    nowAngle = (float)(Math.PI) * -1 + timer * speed * direction;
                                 }
                                 else
                                 {
                                     nowAngle = (float)(Math.PI) * -1 * 3 / 2 - (windingPer * (float)(Math.PI * 2)) - timer * speed * direction;
                                 }
 
-                                if ((nowAngle <= (float)(Math.PI) * -1 && nowAngle >= (float)(Math.PI) * -1 * 3 / 2 - (windingPer * (float)(Math.PI * 2))) || (reverseWinding && nowAngle >= (float)(Math.PI) && nowAngle <= (float)(Math.PI) * -1 * 3 / 2 - (windingPer * (float)(Math.PI * 2))))
+                                if ((!reverseWinding && nowAngle <= (float)(Math.PI) * -1 && nowAngle >= (float)(Math.PI) * -1 * 3 / 2 - (windingPer * (float)(Math.PI * 2))) || (reverseWinding && nowAngle >= (float)(Math.PI) * -1 && nowAngle <= (float)(Math.PI) * -1 * 3 / 2 - (windingPer * (float)(Math.PI * 2))))
                                 {
                                     mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                     mypos.z = m * Mathf.Sin(nowAngle) + center.z;
@@ -209,10 +184,10 @@ public class GameController : MonoBehaviour
                                 }
                                 else
                                 {
-                                    nowAngle = (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2)) - timer * speed * direction;
+                                    nowAngle = (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2)) + timer * speed * direction;
                                 }
 
-                                if ((nowAngle >= (float)(Math.PI) * -1 && nowAngle <= (float)(Math.PI) * -1 / 2 + (windingPer * (float)(Math.PI * 2))) || (reverseWinding && nowAngle <= (float)(Math.PI) * -1 && nowAngle >= (float)(Math.PI) * -1 / 2 + (windingPer * (float)(Math.PI * 2))))
+                                if ((!reverseWinding && nowAngle >= (float)(Math.PI) * -1 && nowAngle <= (float)(Math.PI) * -1 / 2 + (windingPer * (float)(Math.PI * 2))) || (reverseWinding && nowAngle <= (float)(Math.PI) * -1 && nowAngle >= (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2))))
                                 {
                                     mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                     mypos.z = m * Mathf.Sin(nowAngle) + center.z;
@@ -233,10 +208,10 @@ public class GameController : MonoBehaviour
                                 }
                                 else
                                 {
-                                    nowAngle = (float)(Math.PI) * 1 / 2 - (windingPer * (float)(Math.PI * 2));
+                                    nowAngle = (float)(Math.PI) * 1 / 2 - (windingPer * (float)(Math.PI * 2)) - timer * speed * direction;
                                 }
 
-                                if ((nowAngle >= (float)(Math.PI) * 0 && nowAngle <= (float)(Math.PI) * 1 / 2 + (windingPer * (float)(Math.PI * 2))) || (reverseWinding && nowAngle <= (float)(Math.PI) * 0 && nowAngle >= (float)(Math.PI) * 1 / 2 + (windingPer * (float)(Math.PI * 2))))
+                                if ((!reverseWinding && nowAngle >= (float)(Math.PI) * 0 && nowAngle <= (float)(Math.PI) * 1 / 2 + (windingPer * (float)(Math.PI * 2))) || (reverseWinding && nowAngle <= (float)(Math.PI) * 0 && nowAngle >= (float)(Math.PI) * 1 / 2 + (windingPer * (float)(Math.PI * 2))))
                                 {
                                     mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                     mypos.z = m * Mathf.Sin(nowAngle) + center.z;
@@ -254,10 +229,10 @@ public class GameController : MonoBehaviour
                                 }
                                 else
                                 {
-                                    nowAngle = (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2));
+                                    nowAngle = (float)(Math.PI) * -1 / 2 + (windingPer * (float)(Math.PI * 2)) + timer * speed * direction;
                                 }
 
-                                if ((nowAngle <= (float)(Math.PI) * 0 && nowAngle >= (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2))) || (reverseWinding && nowAngle >= (float)(Math.PI) * 0 && nowAngle <= (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2))))
+                                if ((!reverseWinding && nowAngle <= (float)(Math.PI) * 0 && nowAngle >= (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2))) || (reverseWinding && nowAngle >= (float)(Math.PI) * 0 && nowAngle <= (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2))))
                                 {
                                     mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                     mypos.z = m * Mathf.Sin(nowAngle) + center.z;
