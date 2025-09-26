@@ -163,10 +163,12 @@ public class GameController : MonoBehaviour
                                 }
                                 else
                                 {
-                                    nowAngle = (float)(Math.PI) * -1 * 3 / 2 - (windingPer * (float)(Math.PI * 2)) - timer * speed * direction;
+                                    nowAngle = (float)(Math.PI) * -1 * 3 / 2 + timer * speed * direction;
                                 }
-
-                                if ((!reverseWinding && nowAngle <= (float)(Math.PI) * -1 && nowAngle >= (float)(Math.PI) * -1 * 3 / 2 - (windingPer * (float)(Math.PI * 2))) || (reverseWinding && nowAngle >= (float)(Math.PI) * -1 && nowAngle <= (float)(Math.PI) * -1 * 3 / 2 - (windingPer * (float)(Math.PI * 2))))
+                                //nowAngle <= (float)(Math.PI) * -1 * 3 / 2 - (windingPer * (float)(Math.PI * 2))))
+                                //åªç›ÇÃäpìxÇÕÉ}ÉCÉiÉX2ï™ÇÃ3ÉŒ-àÌíEÇµÇΩâ~é¸ï™ÇÊÇËè¨Ç≥Ç¢=ÉoÉc->"ÇÊÇËëÂÇ´Ç¢"Ç≈Ç»Ç¢Ç∆ìÆçÏÇµÇ»Ç¢
+                                //Solved!!
+                                if ((!reverseWinding && nowAngle <= (float)(Math.PI) * -1 && nowAngle >= (float)(Math.PI) * -1 * 3 / 2 - (windingPer * (float)(Math.PI * 2))) || (reverseWinding && nowAngle <= (float)(Math.PI) * -1 && nowAngle >= (float)(Math.PI) * -1 * 3 / 2 - (windingPer * (float)(Math.PI * 2))))
                                 {
                                     mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                     mypos.z = m * Mathf.Sin(nowAngle) + center.z;
@@ -184,10 +186,11 @@ public class GameController : MonoBehaviour
                                 }
                                 else
                                 {
-                                    nowAngle = (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2)) + timer * speed * direction;
+                                    nowAngle = (float)(Math.PI) * -1 / 2 - timer * speed * direction;
                                 }
-
-                                if ((!reverseWinding && nowAngle >= (float)(Math.PI) * -1 && nowAngle <= (float)(Math.PI) * -1 / 2 + (windingPer * (float)(Math.PI * 2))) || (reverseWinding && nowAngle <= (float)(Math.PI) * -1 && nowAngle >= (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2))))
+                                //nowAngle <= (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2))))
+                                //åªç›ÇÃäpìxÇÕ-2ï™ÇÃ1ÉŒ-àÌíEÇµÇΩâ~é¸ï™ÇÊÇËè¨Ç≥Ç¢=o
+                                if ((!reverseWinding && nowAngle >= (float)(Math.PI) * -1 && nowAngle <= (float)(Math.PI) * -1 / 2 + (windingPer * (float)(Math.PI * 2))) || (reverseWinding && nowAngle >= (float)(Math.PI) * -1 && nowAngle <= (float)(Math.PI) * -1 / 2 + (windingPer * (float)(Math.PI * 2))))
                                 {
                                     mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                     mypos.z = m * Mathf.Sin(nowAngle) + center.z;
@@ -208,7 +211,7 @@ public class GameController : MonoBehaviour
                                 }
                                 else
                                 {
-                                    nowAngle = (float)(Math.PI) * 1 / 2 - (windingPer * (float)(Math.PI * 2)) - timer * speed * direction;
+                                    nowAngle = (float)(Math.PI) * 1 / 2 - timer * speed * direction;
                                 }
 
                                 if ((!reverseWinding && nowAngle >= (float)(Math.PI) * 0 && nowAngle <= (float)(Math.PI) * 1 / 2 + (windingPer * (float)(Math.PI * 2))) || (reverseWinding && nowAngle <= (float)(Math.PI) * 0 && nowAngle >= (float)(Math.PI) * 1 / 2 + (windingPer * (float)(Math.PI * 2))))
@@ -229,7 +232,7 @@ public class GameController : MonoBehaviour
                                 }
                                 else
                                 {
-                                    nowAngle = (float)(Math.PI) * -1 / 2 + (windingPer * (float)(Math.PI * 2)) + timer * speed * direction;
+                                    nowAngle = (float)(Math.PI) * -1 / 2 + timer * speed * direction;
                                 }
 
                                 if ((!reverseWinding && nowAngle <= (float)(Math.PI) * 0 && nowAngle >= (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2))) || (reverseWinding && nowAngle >= (float)(Math.PI) * 0 && nowAngle <= (float)(Math.PI) * -1 / 2 - (windingPer * (float)(Math.PI * 2))))
