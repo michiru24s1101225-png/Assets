@@ -172,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 0
+  windingPer: 0
   pointEffect: 1
 --- !u!65 &95025683
 BoxCollider:
@@ -274,7 +274,7 @@ Transform:
   m_GameObject: {fileID: 286046472}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.74, y: 0, z: 9.55}
+  m_LocalPosition: {x: 2.74, y: 0, z: 9.96}
   m_LocalScale: {x: 1, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 1
   isLower: 0
-  totalAngle: 90
+  windingPer: 1
   pointEffect: 3
 --- !u!65 &286046475
 BoxCollider:
@@ -463,7 +463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 0
+  windingPer: 0
   pointEffect: 3
 --- !u!65 &359938843
 BoxCollider:
@@ -565,7 +565,7 @@ Transform:
   m_GameObject: {fileID: 390958899}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.75, y: 0, z: 7.66}
+  m_LocalPosition: {x: 0.75, y: 0, z: 8.07}
   m_LocalScale: {x: 1, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -585,7 +585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 270
+  windingPer: 3
   pointEffect: 1
 --- !u!65 &390958902
 BoxCollider:
@@ -707,7 +707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 90
+  windingPer: 1
   pointEffect: 2
 --- !u!65 &457608026
 BoxCollider:
@@ -829,7 +829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 0
+  windingPer: 0
   pointEffect: 1
 --- !u!65 &465685131
 BoxCollider:
@@ -1118,7 +1118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 0
+  windingPer: 0
   pointEffect: 3
 --- !u!65 &1008275823
 BoxCollider:
@@ -1342,7 +1342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 0
+  windingPer: 0
   pointEffect: 1
 --- !u!65 &1196832206
 BoxCollider:
@@ -1464,7 +1464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 0
+  windingPer: 0
   pointEffect: 2
 --- !u!65 &1201155068
 BoxCollider:
@@ -1586,7 +1586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 0
+  windingPer: 0
   pointEffect: 3
 --- !u!65 &1210660251
 BoxCollider:
@@ -1817,7 +1817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 0
+  windingPer: 0
   pointEffect: 2
 --- !u!65 &1366479823
 BoxCollider:
@@ -2046,7 +2046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 0
+  windingPer: 0
   pointEffect: 1
 --- !u!65 &1477249361
 BoxCollider:
@@ -2168,7 +2168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 0
+  windingPer: 0
   pointEffect: 1
 --- !u!65 &1556795737
 BoxCollider:
@@ -2290,7 +2290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 1
   isLower: 0
-  totalAngle: 90
+  windingPer: 1
   pointEffect: 3
 --- !u!65 &1738151442
 BoxCollider:
@@ -2504,7 +2504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 0
+  windingPer: 0
   pointEffect: 1
 --- !u!65 &1892383043
 BoxCollider:
@@ -2626,7 +2626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 0
+  windingPer: 0
   pointEffect: 1
 --- !u!65 &1909397303
 BoxCollider:
@@ -2748,7 +2748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 0
+  windingPer: 0
   pointEffect: 1
 --- !u!65 &1929409772
 BoxCollider:
@@ -2870,7 +2870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 0
+  windingPer: 0
   pointEffect: 1
 --- !u!65 &1940356870
 BoxCollider:
@@ -2992,7 +2992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 0
+  windingPer: 0
   pointEffect: 1
 --- !u!65 &1963837585
 BoxCollider:
@@ -3114,7 +3114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperWinding: 0
   isLower: 0
-  totalAngle: 0
+  windingPer: 0
   pointEffect: 3
 --- !u!65 &2048022404
 BoxCollider:

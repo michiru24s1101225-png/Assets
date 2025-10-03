@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
     bool right = false;
     bool minusPoint = false;
     float timer = 0;
-    float windingPer = 1;
+    int windingPer = 1;
     int direction = 0;
     int nowPoint = 0;
     int saikoro;
@@ -97,7 +97,7 @@ public class GameController : MonoBehaviour
                 float z2;
                 if (reverseWinding)
                 {
-                    windingPer = (float)(pointDatas[nowPoint - 1].totalAngle) / 360f - 1 / 4;
+                    windingPer = pointDatas[nowPoint - 1].windingPer;
                     x2 = player.transform.position.x;
                     z2 = player.transform.position.z;
                     x1 = pointDatas[nowPoint - 1].transform.position.x;
@@ -105,7 +105,7 @@ public class GameController : MonoBehaviour
                 }
                 else
                 {
-                    windingPer = (float)(pointDatas[nowPoint].totalAngle) / 360f - 1 / 4;
+                    windingPer = pointDatas[nowPoint].windingPer;
                     x1 = player.transform.position.x;
                     z1 = player.transform.position.z;
                     x2 = pointDatas[nowPoint + 1].transform.position.x;
@@ -113,30 +113,18 @@ public class GameController : MonoBehaviour
                 }
                 if ((Mathf.Sqrt((x2 - x1) * (x2 - x1) + (z2 - z1) * (z2 - z1)) > 0.01f && !finished) && saikoro != 0)
                 {
-                    if (pointDatas[nowPoint].totalAngle == 0)
+                    if (pointDatas[nowPoint].windingPer == 0)
                     {
                         player.transform.position += ((pointDatas[nowPoint + 1].transform.position - nowPos) / totalTime) * Time.deltaTime;
                     }
                     else
                     {
-                        if (right)
-                        {
-                            direction = 1;
-                        }
-                        else
-                        {
-                            direction = -1;
-                        }
-                        if (reverseWinding)
-                        {
-                            direction *= -1;
-                        }
                         float speed = 3;
-                        Vector3 pointA=pointDatas[nowPoint].transform.position;
+                        Vector3 pointA = pointDatas[nowPoint].transform.position;
                         Vector3 pointB;
                         if (reverseWinding)
                         {
-                            pointB = pointDatas[nowPoint-1].transform.position;
+                            pointB = pointDatas[nowPoint - 1].transform.position;
                         }
                         else
                         {
@@ -149,106 +137,171 @@ public class GameController : MonoBehaviour
                         float m = Vector3.Distance(pointB, center);
                         float nowAngle = 0;
 
+                        int startValue = 0;
                         if (!pointDatas[nowPoint].isLower)
                         {
-                            if (right)//9時　時計回り：反時計回り
+                            if (right)
                             {
-                                if (!reverseWinding)
+                                startValue = 1;
+                                if (reverseWinding)
                                 {
-                                    nowAngle = (float)(Math.PI) * -1 - timer * speed * direction;
-                                }
-                                else
-                                {
-                                    nowAngle = (float)(Math.PI) * -1 * 3 / 2 - 
-                                        (windingPer * (float)(Math.PI * 2)) - timer * speed * direction;
-                                }
-
-                                if ((nowAngle <= (float)(Math.PI) * -1 && nowAngle >= (float)(Math.PI) *
-                                    -1 * 3 / 2 - (windingPer * (float)(Math.PI * 2))))
-                                {
-                                    mypos.x = l * Mathf.Cos(nowAngle) + center.x;
-                                    mypos.z = m * Mathf.Sin(nowAngle) + center.z;
-                                }
-                                else
-                                {
-                                    finished = true;
+                                    startValue = 3 + windingPer - 1;
                                 }
                             }
-                            else//9時　反時計回り：時計回り
+                            else
                             {
-                                if (!reverseWinding)
+                                startValue = 2;
+                                if (reverseWinding)
                                 {
-                                    nowAngle = (float)(Math.PI * -1) - timer * speed * direction;
-                                }
-                                else
-                                {
-                                    nowAngle = (float)(Math.PI) * -1 / 2 + 
-                                        (windingPer * (float)(Math.PI * 2)) - timer * speed * direction;
-                                }
-
-                                if ((nowAngle >= (float)(Math.PI) * -1 && nowAngle <= (float)(Math.PI) *
-                                    -1 / 2 + (windingPer * (float)(Math.PI * 2))))
-                                {
-                                    mypos.x = l * Mathf.Cos(nowAngle) + center.x;
-                                    mypos.z = m * Mathf.Sin(nowAngle) + center.z;
-                                }
-                                else
-                                {
-                                    finished = true;
+                                    startValue = 4 + windingPer - 1;
                                 }
                             }
                         }
                         else
                         {
-                            if (right)//3時　反時計回り：時計回り
+                            if (right)
                             {
-                                if (!reverseWinding)
+                                startValue = 5;
+                                if (reverseWinding)
                                 {
-                                    nowAngle = (float)(Math.PI * 0) + timer * speed * direction;
-                                }
-                                else
-                                {
-                                    nowAngle = (float)(Math.PI) * 1 / 2 - timer * speed * direction;
-                                }
-
-                                if ((!reverseWinding && nowAngle >= (float)(Math.PI) * 0 && nowAngle <= (float)(Math.PI) *
-                                    1 / 2 + (windingPer * (float)(Math.PI * 2))) || 
-                                    (reverseWinding && nowAngle <= (float)(Math.PI) * 0 && nowAngle >= (float)(Math.PI) *
-                                    1 / 2 + (windingPer * (float)(Math.PI * 2))))
-                                {
-                                    mypos.x = l * Mathf.Cos(nowAngle) + center.x;
-                                    mypos.z = m * Mathf.Sin(nowAngle) + center.z;
-                                }
-                                else
-                                {
-                                    finished = true;
+                                    startValue = 7 + windingPer - 1;
                                 }
                             }
-                            else//3時　時計回り：反時計回り
+                            else
                             {
-                                if (!reverseWinding)
+                                startValue = 6;
+                                if (reverseWinding)
                                 {
-                                    nowAngle = (float)(Math.PI * 0) + timer * speed * direction;
-                                }
-                                else
-                                {
-                                    nowAngle = (float)(Math.PI) * -1 / 2 + timer * speed * direction;
-                                }
-
-                                if ((!reverseWinding && nowAngle <= (float)(Math.PI) * 0 && nowAngle >= (float)(Math.PI) * 
-                                    -1 / 2 - (windingPer * (float)(Math.PI * 2))) || 
-                                    (reverseWinding && nowAngle >= (float)(Math.PI) * 0 && nowAngle <= (float)(Math.PI) *
-                                    -1 / 2 - (windingPer * (float)(Math.PI * 2))))
-                                {
-                                    mypos.x = l * Mathf.Cos(nowAngle) + center.x;
-                                    mypos.z = m * Mathf.Sin(nowAngle) + center.z;
-                                }
-                                else
-                                {
-                                    finished = true;
+                                    startValue = 8 + windingPer - 1;
                                 }
                             }
                         }
+                        startValue %= 8;
+
+                        switch (startValue)
+                        {
+                            case 1:
+                                direction = -1;
+                                nowAngle = (float)(Math.PI) * -1 + timer * speed * direction;//1
+
+                                if ((nowAngle <= (float)(Math.PI) * -1 &&
+                                    nowAngle >= (float)(Math.PI) * -1 * 3 / 2 - (float)(Math.PI / 2) * windingPer))
+                                {
+                                    mypos.x = l * Mathf.Cos(nowAngle) + center.x;
+                                    mypos.z = m * Mathf.Sin(nowAngle) + center.z;
+                                }
+                                else
+                                {
+                                    finished = true;
+                                }
+                                break;
+                            case 2:
+                                direction = 1;
+                                nowAngle = (float)(Math.PI) * -1 + timer * speed * direction;//2
+
+                                if ((nowAngle >= (float)(Math.PI) * -1 &&
+                                    nowAngle <= (float)(Math.PI) * -1 / 2 + (float)(Math.PI / 2) * windingPer))
+                                {
+                                    mypos.x = l * Mathf.Cos(nowAngle) + center.x;
+                                    mypos.z = m * Mathf.Sin(nowAngle) + center.z;
+                                }
+                                else
+                                {
+                                    finished = true;
+                                }
+                                break;
+                            case 3:
+                                direction = 1;
+                                nowAngle = (float)(Math.PI) * -1 * 3 / 2 + timer * speed * direction;//3
+
+                                if ((nowAngle >= (float)(Math.PI) * -1 * 3 / 2 &&
+                                    nowAngle <= (float)(Math.PI) * -1 + (float)(Math.PI / 2) * windingPer))
+                                {
+                                    mypos.x = l * Mathf.Cos(nowAngle) + center.x;
+                                    mypos.z = m * Mathf.Sin(nowAngle) + center.z;
+                                }
+                                else
+                                {
+                                    finished = true;
+                                }
+                                break;
+                            case 4:
+                                direction = -1;
+                                nowAngle = (float)(Math.PI) * -1 / 2 + timer * speed * direction;//4
+
+                                if ((nowAngle <= (float)(Math.PI) * -1 / 2 &&
+                                    nowAngle >= (float)(Math.PI) * -1 - (float)(Math.PI / 2) * windingPer))
+                                {
+                                    mypos.x = l * Mathf.Cos(nowAngle) + center.x;
+                                    mypos.z = m * Mathf.Sin(nowAngle) + center.z;
+                                }
+                                else
+                                {
+                                    finished = true;
+                                }
+                                break;
+                            case 5:
+                                direction = 1;
+                                nowAngle = (float)(Math.PI) * -1 / 2 + timer * speed * direction;//3
+
+                                if ((nowAngle >= (float)(Math.PI) * -1 / 2 &&
+                                    nowAngle <= 0 + (float)(Math.PI / 2) * windingPer))
+                                {
+                                    mypos.x = l * Mathf.Cos(nowAngle) + center.x;
+                                    mypos.z = m * Mathf.Sin(nowAngle) + center.z;
+                                }
+                                else
+                                {
+                                    finished = true;
+                                }
+                                break;
+                            case 6:
+                                direction = 1;
+                                nowAngle = 0 + timer * speed * direction;//3
+
+                                if ((nowAngle >= 0 &&
+                                    nowAngle <= (float)(Math.PI) * 1 / 2 + (float)(Math.PI / 2) * windingPer))
+                                {
+                                    mypos.x = l * Mathf.Cos(nowAngle) + center.x;
+                                    mypos.z = m * Mathf.Sin(nowAngle) + center.z;
+                                }
+                                else
+                                {
+                                    finished = true;
+                                }
+                                break;
+                            case 7:
+                                direction = -1;
+                                nowAngle = 0 - timer * speed * direction;//3
+
+                                if ((nowAngle <= 0 &&
+                                    nowAngle >= (float)(Math.PI) * -1 / 2 - (float)(Math.PI / 2) * windingPer))
+                                {
+                                    mypos.x = l * Mathf.Cos(nowAngle) + center.x;
+                                    mypos.z = m * Mathf.Sin(nowAngle) + center.z;
+                                }
+                                else
+                                {
+                                    finished = true;
+                                }
+                                break;
+                            case 8:
+                                direction = -1;
+                                nowAngle = (float)(Math.PI) * 1 / 2 - timer * speed * direction;//3
+
+                                if ((nowAngle <= (float)(Math.PI) * 1 / 2 &&
+                                    nowAngle >= 0 - (float)(Math.PI / 2) * windingPer))
+                                {
+                                    mypos.x = l * Mathf.Cos(nowAngle) + center.x;
+                                    mypos.z = m * Mathf.Sin(nowAngle) + center.z;
+                                }
+                                else
+                                {
+                                    finished = true;
+                                }
+                                break;
+                        }
+
                         player.transform.position = mypos;
                         timer += Time.deltaTime;
                     }
