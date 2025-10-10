@@ -117,24 +117,30 @@ public class GameController : MonoBehaviour
                         float m = Vector3.Distance(pointB, center);
                         float nowAngle = 0;
 
+                        /*
+                         * (not reverse)startValue:1,2,3,4
+                         * 1:nowAngle=スタート地点が-πかつ進行方向が-direction
+                         * 2:nowAngle=スタート地点が-πかつ進行方向が+direction
+                         * 3:nowAngle=スタート地点が-1/2πかつ進行方向が+direction
+                         * 4:nowAngle=スタート地点が0かつ進行方向が+direction
+                         * (reverse...not reverse時の1,2,3,4と進行方向が反対になる)
+                         * startValue:1,2,3,4
+                         * 1:nowAngle=スタート地点が-3/2πかつ進行方向が+direction
+                         * 2:nowAngle=スタート地点が-1/2πかつ進行方向が-direction
+                         * 3:nowAngle=スタート地点が0かつ進行方向が-direction
+                         * 4:nowAngle=スタート地点が1/2πかつ進行方向が-direction
+                         */
+
                         int startValue = 0;
-                        if (!pointDatas[nowPoint].isLower)
+                        if (!pointDatas[nowPoint].isLower)//単位円の右側か左側か
                         {
                             if (right)
                             {
                                 startValue = 1;
-                                if (reverseWinding)
-                                {
-                                    startValue += windingPer - 1;
-                                }
                             }
                             else
                             {
                                 startValue = 2;
-                                if (reverseWinding)
-                                {
-                                    startValue += windingPer - 1;
-                                }
                             }
                         }
                         else
@@ -142,19 +148,15 @@ public class GameController : MonoBehaviour
                             if (right)
                             {
                                 startValue = 3;
-                                if (reverseWinding)
-                                {
-                                    startValue += windingPer - 1;
-                                }
                             }
                             else
                             {
                                 startValue = 4;
-                                if (reverseWinding)
-                                {
-                                    startValue += windingPer - 1;
-                                }
                             }
+                        }
+                        if (reverseWinding)
+                        {
+                            startValue += windingPer - 1;
                         }
                         startValue %= 4;
 
