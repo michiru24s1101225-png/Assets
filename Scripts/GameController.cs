@@ -91,46 +91,26 @@ public class GameController : MonoBehaviour
                 }
                 right = pointDatas[nowPoint].upperWinding;
                 float totalTime = 1;
-                float x1;
-                float z1;
-                float x2;
-                float z2;
+                Vector3 pointA = pointDatas[nowPoint].transform.position;
+                Vector3 pointB;
                 if (reverseWinding)
                 {
-                    windingPer = pointDatas[nowPoint - 1].windingPer;
-                    x2 = player.transform.position.x;
-                    z2 = player.transform.position.z;
-                    x1 = pointDatas[nowPoint - 1].transform.position.x;
-                    z1 = pointDatas[nowPoint - 1].transform.position.z;
+                    pointB = pointDatas[nowPoint - 1].transform.position;
                 }
                 else
                 {
-                    windingPer = pointDatas[nowPoint].windingPer;
-                    x1 = player.transform.position.x;
-                    z1 = player.transform.position.z;
-                    x2 = pointDatas[nowPoint + 1].transform.position.x;
-                    z2 = pointDatas[nowPoint + 1].transform.position.z;
+                    pointB = pointDatas[nowPoint + 1].transform.position;
                 }
-                if ((Mathf.Sqrt((x2 - x1) * (x2 - x1) + (z2 - z1) * (z2 - z1)) > 0.01f && !finished) && saikoro != 0)
+                Vector3 mypos = player.transform.position;
+                if ((Vector3.Distance(pointB, mypos) > 0.01f && !finished) && saikoro != 0)
                 {
                     if (pointDatas[nowPoint].windingPer == 0)
                     {
-                        player.transform.position += ((pointDatas[nowPoint + 1].transform.position - nowPos) / totalTime) * Time.deltaTime;
+                        player.transform.position += ((pointB - nowPos) / totalTime) * Time.deltaTime;
                     }
                     else
                     {
                         float speed = 3;
-                        Vector3 pointA = pointDatas[nowPoint].transform.position;
-                        Vector3 pointB;
-                        if (reverseWinding)
-                        {
-                            pointB = pointDatas[nowPoint - 1].transform.position;
-                        }
-                        else
-                        {
-                            pointB = pointDatas[nowPoint + 1].transform.position;
-                        }
-                        Vector3 mypos = player.transform.position;
                         Vector3 center = Vector3.zero;
                         center = new Vector3(pointB.x, pointA.y, pointA.z);
                         float l = Vector3.Distance(pointA, center);
@@ -180,7 +160,7 @@ public class GameController : MonoBehaviour
 
                         if (reverseWinding)
                         {
-                            switch(startValue)
+                            switch (startValue)
                             {
                                 case 1:
                                     direction = 1;
