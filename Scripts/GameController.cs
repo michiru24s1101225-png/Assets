@@ -89,20 +89,22 @@ public class GameController : MonoBehaviour
                 {
                     reverseWinding = false;
                 }
-                right = pointDatas[nowPoint].upperWinding;
                 float totalTime = 1;
+                windingPer = pointDatas[nowPoint].windingPer;
                 Vector3 pointA = pointDatas[nowPoint].transform.position;
                 Vector3 pointB;
                 if (reverseWinding)
                 {
                     pointB = pointDatas[nowPoint - 1].transform.position;
+                    right = pointDatas[nowPoint - 1].upperWinding;
                 }
                 else
                 {
                     pointB = pointDatas[nowPoint + 1].transform.position;
+                    right = pointDatas[nowPoint].upperWinding;
                 }
                 Vector3 mypos = player.transform.position;
-                if ((Vector3.Distance(pointB, mypos) > 0.01f && !finished) && saikoro != 0)
+                if ((Vector3.Distance(pointB, mypos) > 0.05f && !finished) && saikoro != 0)
                 {
                     if (pointDatas[nowPoint].windingPer == 0)
                     {
@@ -132,7 +134,7 @@ public class GameController : MonoBehaviour
                          */
 
                         int startValue = 0;
-                        if (!pointDatas[nowPoint].isLower)//’PˆÊ‰~‚Ì‰E‘¤‚©¶‘¤‚©
+                        if ((!pointDatas[nowPoint].isLower && !reverseWinding) || (!pointDatas[nowPoint - 1].isLower && reverseWinding))//’PˆÊ‰~‚Ì‰E‘¤‚©¶‘¤‚©
                         {
                             if (right)
                             {
@@ -158,7 +160,6 @@ public class GameController : MonoBehaviour
                         {
                             startValue += windingPer - 1;
                         }
-                        startValue %= 4;
 
                         if (reverseWinding)
                         {
@@ -166,10 +167,10 @@ public class GameController : MonoBehaviour
                             {
                                 case 1:
                                     direction = 1;
-                                    nowAngle = (float)(Math.PI) * -1 * 3 / 2 + timer * speed * direction;//3
+                                    nowAngle = (float)(Math.PI * -1) * 3 / 2 + timer * speed * direction;
 
-                                    if ((nowAngle >= (float)(Math.PI) * -1 * 3 / 2 &&
-                                        nowAngle <= (float)(Math.PI) * -1 + (float)(Math.PI / 2) * windingPer))
+                                    if ((nowAngle >= (float)(Math.PI * -1) * 3 / 2 &&
+                                        nowAngle <= (float)(Math.PI * -1) + (float)(Math.PI / 2) * windingPer))
                                     {
                                         mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                         mypos.z = m * Mathf.Sin(nowAngle) + center.z;
@@ -181,10 +182,10 @@ public class GameController : MonoBehaviour
                                     break;
                                 case 2:
                                     direction = -1;
-                                    nowAngle = (float)(Math.PI) * -1 / 2 + timer * speed * direction;//4
+                                    nowAngle = (float)(Math.PI * -1) / 2 + timer * speed * direction;
 
-                                    if ((nowAngle <= (float)(Math.PI) * -1 / 2 &&
-                                        nowAngle >= (float)(Math.PI) * -1 - (float)(Math.PI / 2) * windingPer))
+                                    if ((nowAngle <= (float)(Math.PI * -1) / 2 &&
+                                        nowAngle >= (float)(Math.PI * -1) - (float)(Math.PI / 2) * windingPer))
                                     {
                                         mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                         mypos.z = m * Mathf.Sin(nowAngle) + center.z;
@@ -196,10 +197,10 @@ public class GameController : MonoBehaviour
                                     break;
                                 case 3:
                                     direction = -1;
-                                    nowAngle = 0 - timer * speed * direction;//3
+                                    nowAngle = 0 + timer * speed * direction;
 
                                     if ((nowAngle <= 0 &&
-                                        nowAngle >= (float)(Math.PI) * -1 / 2 - (float)(Math.PI / 2) * windingPer))
+                                        nowAngle >= (float)(Math.PI * -1) / 2 - (float)(Math.PI / 2) * windingPer))
                                     {
                                         mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                         mypos.z = m * Mathf.Sin(nowAngle) + center.z;
@@ -211,9 +212,9 @@ public class GameController : MonoBehaviour
                                     break;
                                 case 4:
                                     direction = -1;
-                                    nowAngle = (float)(Math.PI) * 1 / 2 - timer * speed * direction;//3
+                                    nowAngle = (float)(Math.PI * 1) / 2 + timer * speed * direction;
 
-                                    if ((nowAngle <= (float)(Math.PI) * 1 / 2 &&
+                                    if ((nowAngle <= (float)(Math.PI * 1) / 2 &&
                                         nowAngle >= 0 - (float)(Math.PI / 2) * windingPer))
                                     {
                                         mypos.x = l * Mathf.Cos(nowAngle) + center.x;
@@ -232,10 +233,11 @@ public class GameController : MonoBehaviour
                             {
                                 case 1:
                                     direction = -1;
-                                    nowAngle = (float)(Math.PI) * -1 + timer * speed * direction;//1
+                                    nowAngle = (float)(Math.PI * -1) + timer * speed * direction;
 
-                                    if ((nowAngle <= (float)(Math.PI) * -1 &&
-                                        nowAngle >= (float)(Math.PI) * -1 * 3 / 2 - (float)(Math.PI / 2) * windingPer))
+                                    if ((nowAngle <= (float)(Math.PI * -1) &&
+                                        nowAngle >= (float)(Math.PI * -1) * 3 / 2 -
+                                        (float)(Math.PI / 2) * windingPer))
                                     {
                                         mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                         mypos.z = m * Mathf.Sin(nowAngle) + center.z;
@@ -247,10 +249,11 @@ public class GameController : MonoBehaviour
                                     break;
                                 case 2:
                                     direction = 1;
-                                    nowAngle = (float)(Math.PI) * -1 + timer * speed * direction;//2
+                                    nowAngle = (float)(Math.PI * -1) + timer * speed * direction;
 
-                                    if ((nowAngle >= (float)(Math.PI) * -1 &&
-                                        nowAngle <= (float)(Math.PI) * -1 / 2 + (float)(Math.PI / 2) * windingPer))
+                                    if ((nowAngle >= (float)(Math.PI * -1) &&
+                                        nowAngle <= (float)(Math.PI * -1) / 2 +
+                                        (float)(Math.PI / 2) * windingPer))
                                     {
                                         mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                         mypos.z = m * Mathf.Sin(nowAngle) + center.z;
@@ -262,9 +265,9 @@ public class GameController : MonoBehaviour
                                     break;
                                 case 3:
                                     direction = 1;
-                                    nowAngle = (float)(Math.PI) * -1 / 2 + timer * speed * direction;//3
+                                    nowAngle = (float)(Math.PI * -1) / 2 + timer * speed * direction;
 
-                                    if ((nowAngle >= (float)(Math.PI) * -1 / 2 &&
+                                    if ((nowAngle >= (float)(Math.PI * -1) / 2 &&
                                         nowAngle <= 0 + (float)(Math.PI / 2) * windingPer))
                                     {
                                         mypos.x = l * Mathf.Cos(nowAngle) + center.x;
@@ -277,10 +280,11 @@ public class GameController : MonoBehaviour
                                     break;
                                 case 4:
                                     direction = 1;
-                                    nowAngle = 0 + timer * speed * direction;//3
+                                    nowAngle = 0 + timer * speed * direction;
 
                                     if ((nowAngle >= 0 &&
-                                        nowAngle <= (float)(Math.PI) * 1 / 2 + (float)(Math.PI / 2) * windingPer))
+                                        nowAngle <= (float)(Math.PI * 1) / 2 +
+                                        (float)(Math.PI / 2) * windingPer))
                                     {
                                         mypos.x = l * Mathf.Cos(nowAngle) + center.x;
                                         mypos.z = m * Mathf.Sin(nowAngle) + center.z;
