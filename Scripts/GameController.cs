@@ -7,6 +7,7 @@ enum ‚·‚²‚ë‚­
     Lobby,
     Start,
     Move,
+    Next,
     Stop,
     NormalPoint,
     PlusPoint,
@@ -89,10 +90,15 @@ public class GameController : MonoBehaviour
                 {
                     reverseWinding = false;
                 }
+                if (saikoro == 0)
+                {
+                    GameWave++;
+                    break;
+                }
                 float totalTime = 1;
                 windingPer = pointDatas[nowPoint].windingPer;
                 Vector3 pointA = pointDatas[nowPoint].transform.position;
-                Vector3 pointB;
+                Vector3 pointB = Vector3.zero;
                 if (reverseWinding)
                 {
                     pointB = pointDatas[nowPoint - 1].transform.position;
@@ -134,7 +140,8 @@ public class GameController : MonoBehaviour
                          */
 
                         int startValue = 0;
-                        if ((!pointDatas[nowPoint].isLower && !reverseWinding) || (!pointDatas[nowPoint - 1].isLower && reverseWinding))//’PˆÊ‰~‚Ì‰E‘¤‚©¶‘¤‚©
+                        if ((!pointDatas[nowPoint].isLower && !reverseWinding) ||
+                            (!pointDatas[nowPoint - 1].isLower && reverseWinding))//’PˆÊ‰~‚Ì‰E‘¤‚©¶‘¤‚©
                         {
                             if (right)
                             {
@@ -301,7 +308,13 @@ public class GameController : MonoBehaviour
                         timer += Time.deltaTime;
                     }
                 }
-                else if (saikoro != 0)
+                else
+                {
+                    GameWave++;
+                }
+                break;
+            case ‚·‚²‚ë‚­.Next:
+                if (saikoro != 0)
                 {
                     finished = false;
                     direction = 0;
@@ -309,29 +322,18 @@ public class GameController : MonoBehaviour
                     nowPos = player.transform.position;
                     if (minusPoint)
                     {
-                        if (nowPoint - 1 > 0)
-                        {
-                            nowPoint--;
-                        }
-                        else
-                        {
-                            saikoro = 0;
-                        }
+                        nowPoint--;
+                        Debug.Log("n" + nowPoint);
                     }
                     else
                     {
                         nowPoint++;
-                    }
-                    if ((pointDatas[nowPoint].upperWinding && !right) || (!pointDatas[nowPoint].upperWinding && right))
-                    {
-                        direction = -1;
-                    }
-                    else if ((!pointDatas[nowPoint].upperWinding && !right) || (pointDatas[nowPoint].upperWinding && right))
-                    {
-                        direction = 1;
+                        Debug.Log("n" + nowPoint);
                     }
                     saikoro--;
+                    Debug.Log("s" + saikoro);
                     if (nowPoint + 1 == pointDatas.Count) GameWave = ‚·‚²‚ë‚­.Goal;
+                    GameWave--;
                 }
                 else
                 {
