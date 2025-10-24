@@ -139,8 +139,7 @@ public class GameController : MonoBehaviour
                          */
 
                         int startValue = 0;
-                        if ((!pointDatas[nowPoint].isLower && !reverseWinding) ||
-                            (!pointDatas[nowPoint - 1].isLower && reverseWinding))//単位円の右側か左側か
+                        if ((!pointDatas[nowPoint].isLower && !reverseWinding))//単位円の右側か左側か
                         {
                             if (right)
                             {
@@ -164,9 +163,9 @@ public class GameController : MonoBehaviour
                         }
                         if (reverseWinding)
                         {
-                            startValue += windingPer - 1;
+                            startValue = windingPer;
                         }
-
+                        Debug.Log("sv"+startValue+"&np"+nowPoint);
                         if (reverseWinding)
                         {
                             switch (startValue)
