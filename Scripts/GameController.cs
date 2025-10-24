@@ -117,9 +117,16 @@ public class GameController : MonoBehaviour
                     }
                     else
                     {
-                        float speed = 3;
+                        float speed = 1;
                         Vector3 center = Vector3.zero;
-                        center = new Vector3(pointB.x, pointA.y, pointA.z);
+                        if (!reverseWinding)
+                        {
+                            center = new Vector3(pointB.x, pointA.y, pointA.z);
+                        }
+                        else
+                        {
+                            center = new Vector3(pointA.x, pointB.y, pointA.z);
+                        }
                         float l = Vector3.Distance(pointA, center);
                         float m = Vector3.Distance(pointB, center);
                         float nowAngle = 0;
@@ -150,7 +157,7 @@ public class GameController : MonoBehaviour
                                 startValue = 2;
                             }
                         }
-                        else
+                        else if(!reverseWinding)
                         {
                             if (right)
                             {
@@ -165,7 +172,7 @@ public class GameController : MonoBehaviour
                         {
                             startValue = windingPer;
                         }
-                        Debug.Log("sv"+startValue+"&np"+nowPoint);
+                        Debug.Log("saikoro"+saikoro+"&sv"+startValue+"&np"+nowPoint);
                         if (reverseWinding)
                         {
                             switch (startValue)
