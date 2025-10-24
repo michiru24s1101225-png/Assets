@@ -95,18 +95,19 @@ public class GameController : MonoBehaviour
                     break;
                 }
                 float totalTime = 1;
-                windingPer = pointDatas[nowPoint].windingPer;
                 Vector3 pointA = pointDatas[nowPoint].transform.position;
                 Vector3 pointB = Vector3.zero;
                 if (reverseWinding)
                 {
                     pointB = pointDatas[nowPoint - 1].transform.position;
                     right = pointDatas[nowPoint - 1].upperWinding;
+                    windingPer = pointDatas[nowPoint - 1].windingPer;
                 }
                 else
                 {
                     pointB = pointDatas[nowPoint + 1].transform.position;
                     right = pointDatas[nowPoint].upperWinding;
+                    windingPer = pointDatas[nowPoint].windingPer;
                 }
                 nowPos = player.transform.position;
                 if ((Vector3.Distance(pointB, nowPos) > 0.05f && !finished) && saikoro != 0)
@@ -119,16 +120,20 @@ public class GameController : MonoBehaviour
                     {
                         float speed = 1;
                         Vector3 center = Vector3.zero;
+                        float l;
+                        float m;
                         if (!reverseWinding)
                         {
                             center = new Vector3(pointB.x, pointA.y, pointA.z);
+                            l = Vector3.Distance(pointA, center);
+                            m = Vector3.Distance(pointB, center);
                         }
                         else
                         {
-                            center = new Vector3(pointA.x, pointB.y, pointA.z);
+                            center = new Vector3(pointA.x, pointB.y, pointB.z);
+                            l = Vector3.Distance(pointB, center);
+                            m = Vector3.Distance(pointA, center);
                         }
-                        float l = Vector3.Distance(pointA, center);
-                        float m = Vector3.Distance(pointB, center);
                         float nowAngle = 0;
 
                         /*
@@ -146,7 +151,7 @@ public class GameController : MonoBehaviour
                          */
 
                         int startValue = 0;
-                        if ((!pointDatas[nowPoint].isLower && !reverseWinding))//íPà â~ÇÃâEë§Ç©ç∂ë§Ç©
+                        if ((!pointDatas[nowPoint].isLower))//íPà â~ÇÃâEë§Ç©ç∂ë§Ç©
                         {
                             if (right)
                             {
@@ -157,7 +162,7 @@ public class GameController : MonoBehaviour
                                 startValue = 2;
                             }
                         }
-                        else if(!reverseWinding)
+                        else
                         {
                             if (right)
                             {
@@ -170,9 +175,12 @@ public class GameController : MonoBehaviour
                         }
                         if (reverseWinding)
                         {
-                            startValue = windingPer;
+                            startValue *= startValue;
+                            if(startValue % 4 != 0)
+                            {
+                                startValue %= 4;
+                            }
                         }
-                        Debug.Log("saikoro"+saikoro+"&sv"+startValue+"&np"+nowPoint);
                         if (reverseWinding)
                         {
                             switch (startValue)
@@ -328,15 +336,12 @@ public class GameController : MonoBehaviour
                     if (minusPoint)
                     {
                         nowPoint--;
-                        Debug.Log("n" + nowPoint);
                     }
                     else
                     {
                         nowPoint++;
-                        Debug.Log("n" + nowPoint);
                     }
                     saikoro--;
-                    Debug.Log("s" + saikoro);
                     if (nowPoint + 1 == pointDatas.Count) GameWave = Ç∑Ç≤ÇÎÇ≠.Goal;
                     GameWave--;
                 }
